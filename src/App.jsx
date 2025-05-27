@@ -28,13 +28,24 @@ const App = () => {
     setInput('');
 
     try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
-      });
+      // const response = await fetch(API_URL, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ message: input }),
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
+
+      const mockApiCall = (userMessage) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ reply: `Hello User , This is a mock reply to your query >> "${ userMessage}" << \nYour Query in itself is of No Use. \nThis is for testing purpose only , Pls confirm if this is Ok ` });
+    }, 1000);
+  });
+};
+
+const data = await mockApiCall(input);
+
 
       setMessages(prev => {
         const updated = [...prev];
